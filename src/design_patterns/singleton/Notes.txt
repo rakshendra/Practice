@@ -1,0 +1,3 @@
+- Reflection can be used to destroy singleton pattern(except for Enum singleton. Java guarantees it.)
+- serialized singleton class can be problematic because deserialization will create new instance of the class
+    - It can be avoided by implementing the readResolve() method and returning the existing instance
