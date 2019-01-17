@@ -1,4 +1,4 @@
-package src.basics;
+package src.java_basics;
 
 public class SubExample extends Example{
     public String str = "SubExample";

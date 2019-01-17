@@ -1,4 +1,4 @@
-package src.basics;
+package src.java_basics;
 
 public class Example {
     public String str = "Example";

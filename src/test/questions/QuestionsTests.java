@@ -6,6 +6,8 @@ import src.questions.*;
 import src.questions.GraphTraversals.Graph;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class QuestionsTests {
@@ -109,6 +111,30 @@ public class QuestionsTests {
         GraphTraversals.printDFS(graph, 5);
     }
 
+    @Test
+    void testKadanesAlgo(){
+        int[] arr = {-2, -3, 4,-1,-2,1,5,-3};
+        Assertions.assertEquals(KadanesAlgo.maxSumSubArray(arr), 7);
+    }
+
+    @Test
+    void testKDistNodes(){
+        TreeNode root = getTree();
+        Integer[] exp = {2,8};
+        ArrayList<Integer> nodesAtKDist = KDistNodes.findNodesAtKDist(root, 6, 3);
+        Collections.sort(nodesAtKDist);
+        Integer[] actual = nodesAtKDist.toArray(new Integer[0]);
+        Assertions.assertArrayEquals(exp, actual);
+    }
+
+    @Test
+    void testLCABST(){
+        TreeNode root = getBST();
+        Assertions.assertEquals(1, LCABST.lcaBST(root, 1,2));
+        Assertions.assertEquals(3, LCABST.lcaBST(root, 4,2));
+        Assertions.assertEquals(5, LCABST.lcaBST(root, 4,6));
+    }
+
     private TreeNode getTree() {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
@@ -118,6 +144,18 @@ public class QuestionsTests {
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(7);
         root.right.right.left = new TreeNode(8);
+        return root;
+    }
+
+    private TreeNode getBST() {
+        TreeNode root = new TreeNode(5);
+        root.left = new TreeNode(3);
+        root.right = new TreeNode(7);
+        root.left.left = new TreeNode(1);
+        root.left.right = new TreeNode(4);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(8);
+        root.left.left.right = new TreeNode(2);
         return root;
     }
 
