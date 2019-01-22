@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test ;
 import src.questions.*;
 import src.questions.GraphTraversals.Graph;
+import sun.reflect.generics.tree.Tree;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -133,6 +134,61 @@ public class QuestionsTests {
         Assertions.assertEquals(1, LCABST.lcaBST(root, 1,2));
         Assertions.assertEquals(3, LCABST.lcaBST(root, 4,2));
         Assertions.assertEquals(5, LCABST.lcaBST(root, 4,6));
+    }
+
+    @Test
+    void testSecondLargest(){
+        int[] arr1 = {2,2,2,2,2,2,2};
+        int[] arr2 = {2,2,3,3,1,1,4,5,3,6};
+        int[] arr3 = {1,2,3,4,5,6,7};
+
+        Assertions.assertEquals(Integer.MIN_VALUE, SecondLargest.secondLargest(arr1));
+        Assertions.assertEquals(5, SecondLargest.secondLargest(arr2));
+        Assertions.assertEquals(6, SecondLargest.secondLargest(arr3));
+    }
+
+    @Test
+    void testBSTToGST(){
+        TreeNode root = getBST();
+        BSTToGreaterSumTree.bstToGST(root);
+        ArrayList<Integer> ans = TreeTraversals.inorder(root);
+
+        Integer[] exp = {35,33,30,26,21,15,8,0};
+        Integer[] ansArr = ans.toArray(new Integer[0]);
+        Assertions.assertArrayEquals(exp, ansArr);
+    }
+
+    @Test
+    void testRotatedSortedSearch(){
+        int[] arr1 = {2,3,4,5,6,7,8,9,1};
+        Assertions.assertEquals(-1, BinarySearchRotatedSorted.searchElement(arr1, 10));
+        Assertions.assertEquals(1, BinarySearchRotatedSorted.searchElement(arr1, 3));
+        Assertions.assertEquals(8, BinarySearchRotatedSorted.searchElement(arr1, 1));
+
+        int[] arr2 = {6,7,8,9,1,2,3,4,5};
+        Assertions.assertEquals(-1, BinarySearchRotatedSorted.searchElement(arr2, 10));
+        Assertions.assertEquals(6, BinarySearchRotatedSorted.searchElement(arr2, 3));
+        Assertions.assertEquals(1, BinarySearchRotatedSorted.searchElement(arr2, 7));
+
+        int[] arr3 = {1,2,3,4,5,6,7,8,9};
+        Assertions.assertEquals(-1, BinarySearchRotatedSorted.searchElement(arr3, 10));
+        Assertions.assertEquals(2, BinarySearchRotatedSorted.searchElement(arr3, 3));
+        Assertions.assertEquals(3, BinarySearchRotatedSorted.searchElement(arr3, 4));
+    }
+
+    @Test
+    void testRemoveExtraSpaces(){
+        String str1 = " Who the     hell is    this Guy.    ";
+        String exp1 = "Who the hell is this Guy.            ";
+        char[] str1Chars = str1.toCharArray();
+        RemoveExtraSpaces.removeSpaces(str1Chars);
+        Assertions.assertEquals(exp1, String.valueOf(str1Chars));
+
+        String str2 = " Who the hell is this Guy.";
+        String exp2 = "Who the hell is this Guy. ";
+        char[] str2Chars = str2.toCharArray();
+        RemoveExtraSpaces.removeSpaces(str2Chars);
+        Assertions.assertEquals(exp2, String.valueOf(str2Chars));
     }
 
     private TreeNode getTree() {
